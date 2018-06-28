@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>RPS Multiplayer Game!</title>
+    <title>Train Schedule - MultiUser w/ Firebase</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Style sheets -->
-    <link rel="stylesheet" type="text/css" media="screen" href="assests/css/reset.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="assests/css/rps.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/reset.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/rps.css" />
 
-     <!-- jQuery -->
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <!-- Firebase Reference -->
     <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
@@ -19,25 +20,86 @@
     <!-- Game code -->
     <script src="assets/javascript/rps.js"></script>
 </head>
+
 <body>
-        <header>
-                <!-- Box to ensure header content is same size as main content for aestetics -->
-                <div id="headerbox">
-                    <div id="name">Nic Logan</div>
-                    <div id="navlinks">
-                        <p>
-                            <a href=" https://nicholaslogan255.github.io/responsive-portfolio/"> Portfolio </a>
-                        </p>
-                    </div>
-                </div>
-            </header>
+    <header>
+        <!-- Box to ensure header content is same width as main content for aestetics -->
+        <div id="headerbox">
+            <div id="name">Nic Logan</div>
+            <div id="navlinks">
+                <a href=" https://nicholaslogan255.github.io/responsive-portfolio/"> Portfolio </a>
+            </div>
+        </div>
+    </header>
 
-    <section><h1>RPS Game</h1>
+    <section>
+        <h1> Train Schedule:</h1>
 
-        Watchers: <span id="watchers"></span>
+        <!-- Watchers:
+        <span id="watchers"></span>
+
+        <form>
+            <input type="radio" name="player1" value="rock"> rock
+            <input type="radio" name="player1" value="paper"> paper
+            <input type="radio" name="player1" value="sissors"> sissors
+        </form>
+
+        <form>
+            <input type="radio" name="player2" value="rock"> rock
+            <input type="radio" name="player2" value="paper"> paper
+            <input type="radio" name="player2" value="sissors"> sissors
+        </form> -->
+
+        <div id="contentBox">
+            <table id="trainSchedules" style="width:100%">
+                <tr>
+                    <th>Train Name</th>
+                    <th>Destination</th>
+                    <th>Frequency (min)</th>
+                    <th>Next Arrival</th>
+                    <th>Time to Next Arrival (min)</th>
+                </tr>
+            </table>
+
+        </div>
+
+
+        <div id="contentBox">
+            <form>
+                <label for="tName">Train Name</label> <br>
+                <input type="text" name="TName" id="tName">
+                <br>
+                
+
+                <label for="tDestination">Destination</label><br>
+                <input type="text" name="tDestination" id="tDestination">
+                <br>
+
+                <label for="tStartTime">First Train time HH:mm</label><br>
+                <input type="text" name="tStartTime" id="tStartTime">
+                <br>
+
+                <label for="tFreq">Frequency</label><br>
+                <input type="text" name="tFreq" id="tFreq">
+                <br>
+
+
+                <button  id="add-train">Add Train</button>
+            </form>
+
+        </div>
+
+
+
+
+
+
+
+
     </section>
-    
+
     <footer>Copyright</footer>
-    
+
 </body>
+
 </html>

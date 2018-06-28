@@ -53,6 +53,10 @@ a.visited{
     color: #777777;
 }
 
+th{
+    font-weight: bold;
+}
+
 #name{
     background-color: #4aaaa5;
     color: #ffffff;
@@ -85,10 +89,26 @@ section{
     font-size: 30px;
 }
 
+#contentBox{
+    border-style: solid;
+    border-width: 2px;
+    border-color: #4aaaa5;
+    padding: 10px;
+    margin: 10px;
+
+    position: relative;
+  
+}
+
+label{
+    font-weight: bold;
+}
+
 /* CSS for the form page */
 input[type=text]{
-    position: relative;
-    width: 100%;
+    margin-top: -5px;
+    position: absolute;
+    width: 90%;
     height: 2em;
 }
 input[type=text]:focus{
@@ -97,7 +117,7 @@ input[type=text]:focus{
 input[name=message]{
     height: 200px;
 }
-input[type=submit]{
+input[type=submit], button{
     background-color: #4aaaa5;
     width: 100px;
     height: 50px;
