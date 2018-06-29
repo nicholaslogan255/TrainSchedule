@@ -21,9 +21,11 @@ var config = {
     var trainName = $("#train-name-input").val().trim();
     var trainDest = $("#destination-input").val().trim();
     var trainFreq = $("#Frequency-input").val().trim();
-    var trainStart = moment($("#start-time-input").val().trim(), "MM/DD/YYYY").format("X");
+    var trainStart = moment($("#start-time-input").val().trim(), "HH:mm").format("HH:mm");
 
-    //empName empRole empRate empStart
+
+    // TODO: validate data
+
   
     // Creates local "temporary" object for holding train data
     var newTrain = {
@@ -62,28 +64,31 @@ var config = {
     var trainStart = childSnapshot.val().start;
 
     // Prettify the train times
-    trainFreqTime = moment(trainFreq, "minutes");
     trainStartTime = moment(trainStart, "HH:mm");
   
     // train Info
-    console.log("Fire: "+trainName);
-    console.log("Fire: "+trainDest);
-    console.log("Fire: "+trainFreqTime.format("MM"));
-    console.log("Fire: "+trainStartTime);
-
-
+    //console.log("Fire: "+trainName);
+    //console.log("Fire: "+trainDest);
+    console.log("freq: "+trainFreq);
+    console.log("start: "+trainStartTime);
+   
     // Current Time
     //var currentTime = moment();
+
+    console.log("Current Time: "+moment().format("HH:mm"));
   
     // find the minutes since first train in minutes
     var timeSinceStart = moment().diff(trainStartTime,"minutes");
+    console.log("min after start: "+timeSinceStart);
+
+
  
-    var minToNextTrain = trainFreqTime - (timeSinceStart % trainFreqTime);
+    var minToNextTrain = (trainFreq) - (timeSinceStart % trainFreq);
     console.log(minToNextTrain);
   
     // Calculate the total billed rate
-    var nextTrainTime = moment().add( minToNextTrain,"HH:mm")
-    console.log(nextTrainTime.format("HH:mm"));
+    var nextTrainTime = moment().add( minToNextTrain,"minutes")
+    console.log("Next Train: "+nextTrainTime)
   
 
 
