@@ -34,7 +34,7 @@ $("#add-train-btn").on("click", function (event) {
   console.log("Raw Data: " + trainStart);
 
   if (trainName === "" || trainDest === "" || trainFreq === "false" || trainStart === "") {
-    errorMsg = "Please enter all fields";
+    $("#userMessage").text("Please enter all fields");
     dataValidated = false;
   }
 
@@ -43,13 +43,13 @@ $("#add-train-btn").on("click", function (event) {
 
   // check if train freq is a positive number
   if (parseInt(trainFreq) < 1 || isNaN(trainFreq)) {
-    errorMsg = "Train Frequency be a valid number";
+    $("#userMessage").text("Train Frequency be a valid number");
     dataValidated = false;
 
   }
 
   if (trainStart === "Invalid date") {
-    errorMsg = "Please enter a valid start time";
+    $("#userMessage").text("Please enter a valid start time");
     dataValidated = false;
   }
 
@@ -79,12 +79,13 @@ $("#add-train-btn").on("click", function (event) {
     $("#Frequency-input").val("");
     $("#start-time-input").val("");
 
+    $("#userMessage").text("Train Entered Successfully!"); // update user message
+    $("#myModal").modal(); // show the modal
 
-    // todo: replace alerts with modals
-    alert("train successfully added");
   }
   else {
-    alert(errorMsg);
+   
+    $("#myModal").modal();
   }
 
 
@@ -104,21 +105,15 @@ database.ref().on("child_added", function (childSnapshot) {
   trainStartTime = moment(trainStart, "HH:mm");
 
   // train Info
-  //console.log("Fire: "+trainName);
-  //console.log("Fire: "+trainDest);
+ 
   console.log("freq: " + trainFreq);
   console.log("start: " + trainStartTime);
-
-  // Current Time
-  //var currentTime = moment();
 
   console.log("Current Time: " + moment().format("HH:mm"));
 
   // find the minutes since first train in minutes
   var timeSinceStart = moment().diff(trainStartTime, "minutes");
   console.log("min after start: " + timeSinceStart);
-
-
 
   var minToNextTrain = (trainFreq) - (timeSinceStart % trainFreq);
   console.log(minToNextTrain);
@@ -127,8 +122,6 @@ database.ref().on("child_added", function (childSnapshot) {
   var nextTrainTime = moment().add(minToNextTrain, "minutes")
   console.log("Next Train: " + nextTrainTime)
 
-
-
   // Create the new row
   var newRow = $("<tr>").append(
     $("<td>").text(trainName),
@@ -136,8 +129,6 @@ database.ref().on("child_added", function (childSnapshot) {
     $("<td>").text(trainFreq),
     $("<td>").text(nextTrainTime.format("HH:mm")),
     $("<td>").text(minToNextTrain),
-
-
   );
 
   // Append the new row to the table
